@@ -30,7 +30,7 @@ def get_current_username(credentials: HTTPBasicCredentials = Depends(security)):
         )
     return {"username": credentials.username, "password": credentials.password}
 
-# I got inspired from your hackme website, it is modified affine cipher(the b coefficient changes every iteration)
+# I got inspired from your hackme page, it is modified affine cipher(the b coefficient changes every iteration)
 @app.post('/coding')
 async def words_coding_post(word: Word, secure: str = Depends(get_current_username)):
     a = word.contents
