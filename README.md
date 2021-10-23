@@ -33,6 +33,6 @@ Go to http://127.0.0.1:8000/docs# in browser
  /decoding - in: encoded string 
            - out: (decoded string)
 ```
-
+encoding algorithm is a modified version of affine cipher. I got inspired by your hackme page :) unluckily i couldn't solve it.
 
 
