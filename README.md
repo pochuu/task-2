@@ -9,13 +9,23 @@ $ docker build -t fastapi .
 $ docker run -p 8000:8000 fastapi
 ```
 
-# How to use
+## How to use
 ```
 $ uvicorn main:app --reload
 ```
 
-# Unit tests
+## Unit tests
 from project root: github/api
 ```
 $ pytest tests.py
 ```
+
+## Access API docs:
+```
+Go to http://127.0.0.1:8000/docs# in browser
+```
+
+## Avaible endpoints
+- /user
+- /coding
+- /decoding
