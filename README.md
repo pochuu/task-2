@@ -24,10 +24,13 @@ $ pytest tests.py
 ```
 Go to http://127.0.0.1:8000/docs# in browser
 ```
-
+# Documentation
 ## Avaible endpoints
 ```
- /user
+ /user - prompt for username and login (default: username,password)
  /coding
  /decoding
 ```
+
+
+
