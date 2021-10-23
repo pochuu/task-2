@@ -36,4 +36,7 @@ Go to http://127.0.0.1:8000/docs# in browser
 Encoding algorithm is a modified version of affine cipher. I got inspired by your hackme page :), unluckily I couldn't solve it.
 The cipher is based on string.printable, there is also prevention which doesn't let you enter into string unwanted letters.
 
-
+# Needed modules
+```
+- requests, fastapi, uvicorn, string, secrets
+```
