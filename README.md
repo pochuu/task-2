@@ -15,7 +15,7 @@ $ uvicorn main:app --reload
 ```
 
 # Unit tests
-from project root: github/task
+from project root: github/api
 ```
 $ pytest tests.py
 ```
