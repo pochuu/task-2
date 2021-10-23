@@ -28,8 +28,8 @@ Go to http://127.0.0.1:8000/docs# in browser
 ## Avaible endpoints
 ```
  /user - prompt for username and login (default: username,password)
- /coding
- /decoding
+ /coding - in: (string) out: (encoded string)
+ /decoding in: (encoded string) out: (decoded string)
 ```
 
 
