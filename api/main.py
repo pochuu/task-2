@@ -37,6 +37,8 @@ async def words_coding_post(word: Word, secure: str = Depends(get_current_userna
     b = b_
     encode = []
     for e in a:
+        if e not in string.printable:
+            return {"Unknown":"character"}
         encode.append((string.printable.index(e) * c + b) % 97)
         b = (b * d) % 97  # adding some randomness so the string made from the same letters is harder to decipher
     string_result = lambda x: [string.printable[s] for s in x]
