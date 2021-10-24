@@ -14,7 +14,7 @@ def test_security_http_basic():
     auth = HTTPBasicAuth(username="username", password="password")
     response = client.get("/user", auth=auth)
     assert response.status_code == 200, response.text
-    assert response.json() == {'username': 'user', 'password': 'password'}
+    assert response.json() == {'username': 'username', 'password': 'password'}
 
 async def override_dependency():
     return {"username": 'username', "password": 'password'}
