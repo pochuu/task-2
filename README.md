@@ -34,7 +34,7 @@ You have to go through authorization if you want to access the following endopin
  ```
  /coding   - in: (string)  
            - out: (encoded string)
- /decoding - in: encoded string 
+ /decoding - in: (encoded string)
            - out: (decoded string)
 ```
 Encoding algorithm is a modified version of affine cipher. I got inspired by your hackme page :), unluckily I couldn't solve it.
