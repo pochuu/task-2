@@ -42,7 +42,7 @@ async def words_coding_post(word: Word, secure: str = Depends(get_current_userna
         encode.append((string.printable.index(e) * c + b) % 97)
         b = (b * d) % 97  # adding some randomness so the string made from the same letters is harder to decipher
     string_result = lambda x: [string.printable[s] for s in x]
-    return {word.contents: ''.join(string_result(encode))}
+    return {"coded": ''.join(string_result(encode))}
 
 
 @app.post('/decoding')
@@ -54,7 +54,7 @@ async def words_decoding_post(word: Word, secure: str = Depends(get_current_user
         decode.append((c_ * (string.printable.index(e) - b)) % 97)
         b = (b * d) % 97
     string_result = lambda x: [string.printable[s] for s in x]
-    return {word.contents: ''.join(string_result(decode))}
+    return {"decoded": ''.join(string_result(decode))}
 
 if __name__ == '__main__':
     uvicorn.run(app, port=8000, host='0.0.0.0')
