@@ -4,6 +4,7 @@ from requests.auth import HTTPBasicAuth
 
 client = TestClient(app)
 
+
 def test_read_main():
     response = client.get('/user')
     assert response.status_code == 401
@@ -16,11 +17,13 @@ def test_security_http_basic():
     assert response.status_code == 200, response.text
     assert response.json() == {'username': 'username', 'password': 'password'}
 
+    
 async def override_dependency():
     return {"username": 'username', "password": 'password'}
 
 #avoiding auth for the unit test usage
 app.dependency_overrides[get_current_username] = override_dependency
+
 
 def test_encoding():
     response = client.post(
@@ -30,15 +33,17 @@ def test_encoding():
         },
     )
     assert response.status_code == 200, response.text
-
+    assert response.json() == {"coded": "Q~C"}
+    
+    
 def test_decoding():
     response = client.post(
         "/decoding",
         json={
-            "contents": "foo",
+            "contents": "Q~C",
         },
     )
     assert response.status_code == 200, response.text
-
+    assert response.json() == {"decoded": "foo"}
 #pytest tests.py
 
