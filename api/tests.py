@@ -11,13 +11,13 @@ def test_read_main():
 
 
 def test_security_http_basic():
-    auth = HTTPBasicAuth(username="user", password="password")
+    auth = HTTPBasicAuth(username="username", password="password")
     response = client.get("/user", auth=auth)
     assert response.status_code == 200, response.text
     assert response.json() == {'username': 'user', 'password': 'password'}
 
 async def override_dependency():
-    return {"username": 'user', "password": 'password'}
+    return {"username": 'username', "password": 'password'}
 
 #avoiding auth for the unit test usage
 app.dependency_overrides[get_current_username] = override_dependency
