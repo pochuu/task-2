@@ -15,12 +15,12 @@ security = HTTPBasic()
 
 class Word(BaseModel):
     contents: str
-        
-        
-b = 7
-c = 3
-c_ = 65
-d = 3
+
+class Coefficients:
+    b = 7
+    c = 3
+    c_ = 65
+    d = 3
 
 
 @app.get('/user')
@@ -50,10 +50,10 @@ def words_decoding_post(word: Word, secure: str = Depends(get_current_username))
 
 def decode_word(word):
     decode = []
-    b_ = b
+    coe = Coefficients()
     for char in word.contents:
-        decode.append((c_ * (string.printable.index(char) - b_)) % 97)
-        b_ = (b_ * d) % 97
+        decode.append((coe.c_ * (string.printable.index(char) - coe.b)) % 97)
+        coe.b = (coe.b * coe.d) % 97
     return decode
 
 
@@ -61,13 +61,13 @@ def encode_word(word):
     '''
     I got inspired from your hackme page, it is modified affine cipher(the b coefficient changes every iteration)
     '''
-    b_ = b
+    coe = Coefficients()
     encode = []
     for char in word.contents:
         if char not in string.printable:
             return {"Unknown": "character"}
-        encode.append((string.printable.index(char) * c + b_) % 97)
-        b_ = (b_ * d) % 97  # adding some randomness so the string made from the same letters is harder to decipher
+        encode.append((string.printable.index(char) * coe.c + coe.b) % 97)
+        coe.b = (coe.b * coe.d) % 97  # adding some randomness so the string made from the same letters is harder to decipher
     return encode
 
 
