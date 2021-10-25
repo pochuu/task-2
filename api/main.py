@@ -15,10 +15,10 @@ security = HTTPBasic()
 
 class Word(BaseModel):
     contents: str
-    b = 7
-    c = 3
-    c_ = 65
-    d = 3
+b = 7
+c = 3
+c_ = 65
+d = 3
 
 
 @app.get('/user')
@@ -48,9 +48,10 @@ def words_decoding_post(word: Word, secure: str = Depends(get_current_username))
 
 def decode_word(word):
     decode = []
+    b_ = b
     for char in word.contents:
-        decode.append((word.c_ * (string.printable.index(char) - word.b)) % 97)
-        word.b = (word.b * word.d) % 97
+        decode.append((c_ * (string.printable.index(char) - b_)) % 97)
+        b_ = (b_ * d) % 97
     return decode
 
 
@@ -58,13 +59,15 @@ def encode_word(word):
     '''
     I got inspired from your hackme page, it is modified affine cipher(the b coefficient changes every iteration)
     '''
+    b_ = b
     encode = []
     for char in word.contents:
         if char not in string.printable:
             return {"Unknown": "character"}
-        encode.append((string.printable.index(char) * word.c + word.b) % 97)
-        word.b = (word.b * word.d) % 97  # adding some randomness so the string made from the same letters is harder to decipher
+        encode.append((string.printable.index(char) * c + b_) % 97)
+        b_ = (b_ * d) % 97  # adding some randomness so the string made from the same letters is harder to decipher
     return encode
+
 
 if __name__ == '__main__':
     uvicorn.run(app, port=8000, host='0.0.0.0')
